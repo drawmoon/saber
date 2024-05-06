@@ -1,4 +1,4 @@
-package klsql
+package clause
 
 // A select statement.
 type Select interface {

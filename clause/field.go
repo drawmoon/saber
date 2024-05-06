@@ -1,4 +1,4 @@
-package klsql
+package clause
 
 // A field contained in a table.
 type Field interface {

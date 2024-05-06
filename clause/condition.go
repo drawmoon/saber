@@ -1,4 +1,4 @@
-package klsql
+package clause
 
 // A condition or predicate.
 // Conditions can be used in a variety of SQL clauses. They're mainly used in a

@@ -1,4 +1,4 @@
-package klsql
+package clause
 
 // The join hint type.
 type JoinHint Keyword

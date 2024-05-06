@@ -1,4 +1,4 @@
-package klsql
+package clause
 
 import (
 	"errors"
@@ -20,6 +20,11 @@ func (k *Keyword) Render(style RenderKeywordCase) (string, error) {
 		return strings.ToUpper(k.asIs), nil
 	}
 	return k.asIs, errors.New("Unknown render style: " + string(style))
+}
+
+// Create a new SQL keyword.
+func NewKeyword(asIs string) *Keyword {
+	return &Keyword{asIs: asIs}
 }
 
 // Specify the style of rendering SQL keywords.
