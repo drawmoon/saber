@@ -17,26 +17,6 @@ func (qm *QueryModel) BuildSelectStatement() (*clause.Select, error) {
 	return nil, nil
 }
 
-type Operator struct {
-	keyword *clause.Keyword
-}
-
-type Comparator struct {
-	keyword *clause.Keyword
-}
-
-var (
-	And Operator = Operator{clause.NewKeyword("and")}
-	Or  Operator = Operator{clause.NewKeyword("or")}
-
-	Eq Comparator = Comparator{clause.NewKeyword("eq")}
-	Ne Comparator = Comparator{clause.NewKeyword("ne")}
-	Lt Comparator = Comparator{clause.NewKeyword("lt")}
-	Gt Comparator = Comparator{clause.NewKeyword("gt")}
-	Le Comparator = Comparator{clause.NewKeyword("le")}
-	Ge Comparator = Comparator{clause.NewKeyword("ge")}
-)
-
 type Condition struct {
 	Operator   *string
 	Field      *string

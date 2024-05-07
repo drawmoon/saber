@@ -6,6 +6,9 @@ type JoinHint Keyword
 // The join type.
 type JoinType Keyword
 
+// A combine operator is used to combine result sets of two arbitrary select queries.
+type CombineOperator Keyword
+
 var (
 	Hash   JoinHint = JoinHint{"hash"}
 	Loop   JoinHint = JoinHint{"loop"}
@@ -33,6 +36,13 @@ var (
 	// or right (table2) table records.
 	FullJoin      JoinType = JoinType{"full join"}
 	FullOuterJoin JoinType = JoinType{"full outer join"}
+
+	Union        CombineOperator = CombineOperator{"union"}
+	UnionAll     CombineOperator = CombineOperator{"union all"}
+	Except       CombineOperator = CombineOperator{"except"}
+	ExceptAll    CombineOperator = CombineOperator{"except all"}
+	Intersect    CombineOperator = CombineOperator{"intersect"}
+	IntersectAll CombineOperator = CombineOperator{"intersect all"}
 )
 
 // A table.
