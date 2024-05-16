@@ -1,4 +1,4 @@
-package clause
+package klsql
 
 import (
 	"errors"
