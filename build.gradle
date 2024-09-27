@@ -1,0 +1,104 @@
+plugins {
+	id 'java-library'
+	id 'com.github.johnrengelman.shadow' version '8.1.1'
+	id 'com.diffplug.spotless' version '6.13.0'
+	id 'net.ltgt.errorprone' version '3.1.0'
+	// id 'com.github.spotbugs' version '5.2.1'
+}
+
+group = 'io.github.drawmoon.saber'
+version = '0.1.0'
+if (!project.hasProperty('release')) {
+	version += '-SNAPSHOT'
+}
+
+base {
+	archivesName = 'saber'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation libs.junit.jupiter
+	testImplementation libs.hamcrest
+
+	implementation libs.hikari
+	implementation libs.jackson.core
+	implementation libs.jackson.databind
+	implementation libs.jackson.annotations
+	implementation libs.guava
+	implementation libs.jgrapht.core
+	errorprone libs.errorprone
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
+	withJavadocJar()
+	withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.errorprone.disableWarningsInGeneratedCode = true
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+
+spotless {
+	format 'misc', {
+		target '*.gradle', '.gitattributes', '.gitignore'
+
+		trimTrailingWhitespace()
+		indentWithTabs()
+		endWithNewline()
+	}
+	java {
+		target '**/*.java'
+
+		importOrder()
+		removeUnusedImports()
+		trimTrailingWhitespace()
+		googleJavaFormat()
+		formatAnnotations()
+		licenseHeaderFile("$rootDir/HEADER.txt")
+	}
+}
+
+// spotbugs {
+// 	effort = 'max'
+// 	reportLevel = 'low'
+// 	excludeFilter = file("$rootDir/spotbugs-filter.xml")
+// }
+
+// spotbugsMain {
+// 	reports {
+// 		html {
+// 			required = true
+// 			outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+// 			stylesheet = 'fancy-hist.xsl'
+// 		}
+// 	}
+// }
+
+javadoc.options {
+	encoding = 'UTF-8'
+	if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
+		links 'https://docs.oracle.com/javase/8/docs/api/'
+	} else {
+		links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+	}
+}
+
+artifacts {
+	archives javadocJar, sourcesJar, shadowJar
+}

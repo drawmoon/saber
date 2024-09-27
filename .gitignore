@@ -1,3 +1,4 @@
+#-----------------------------------------------------------------------
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
@@ -19,3 +20,79 @@
 
 # Go workspace file
 go.work
+
+# App executable file
+bin
+
+#-----------------------------------------------------------------------
+# Java file
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+#-----------------------------------------------------------------------
+# Maven file
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+#-----------------------------------------------------------------------
+# Gradle file
+bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
+
+#-----------------------------------------------------------------------
+# JetBrains app file
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+#-----------------------------------------------------------------------
+# Eclipse file
+.settings/
+bin/
+tmp/
+.metadata
+.classpath
+.project
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
+
+#-----------------------------------------------------------------------
+# Visual Studio Code file
+.vscode/
+.code-workspace
+
+#-----------------------------------------------------------------------
+# OS file
+.DS_Store
+
+
+#-----------------------------------------------------------------------
+# Python file
+.venv/
