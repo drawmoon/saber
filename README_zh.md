@@ -42,17 +42,19 @@ Saber 可接收生成 DSL 源代码的查询模型，还包括 DAO、拦截和�
 将 JSON 字符串转换为 QueryModel 并渲染 SQL：
 
 ```java
-Qm model = Qm.fromJSON(JSON_STRING);
+QueryModel model = QueryModel.fromJSON(JSON_STRING);
+model.prepare();
 
-Select statement = Expressions.create(RUBIK_CUBE, model);
-String sql       = statement.render();
+String sql = model.render();
 ```
 
 编写模型并获取查询：
 
 ```java
-Qm model          = Qm.fromJSON(JSON_STRING);
-Response response = Expressions.create(RUBIK_CUBE, model).fetch();
+QueryModel model = QueryModel.fromJSON(JSON_STRING);
+model.prepare();
+
+Response response = model.fetch();
 ```
 
 ## 编写类型安全的 SQL
@@ -64,7 +66,7 @@ Expressions.create(RUBIK_CUBE).select(1);
 更多强大的示例：
 
 ```java
-Table orders   = RUBIK_CUBE.getTable("orders");
+Table orders = RUBIK_CUBE.getTable("orders");
 Table products = RUBIK_CUBE.getTable("products");
 
 Field month = RUBIK_CUBE.getField("month");

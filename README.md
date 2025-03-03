@@ -42,17 +42,19 @@ For function syntax in Saber, [see this](./docs/functions_in_saber.md).
 Converts a JSON string into a QueryModel and renders SQL:
 
 ```java
-Qm model = Qm.fromJSON(JSON_STRING);
+QueryModel model = QueryModel.fromJSON(JSON_STRING);
+model.prepare();
 
-Select statement = Expressions.create(RUBIK_CUBE, model);
-String sql       = statement.render();
+String sql = model.render();
 ```
 
 Write a model and get the query:
 
 ```java
-Qm model          = Qm.fromJSON(JSON_STRING);
-Response response = Expressions.create(RUBIK_CUBE, model).fetch();
+QueryModel model = QueryModel.fromJSON(JSON_STRING);
+model.prepare();
+
+Response response = model.fetch();
 ```
 
 ## Writing Typesafe SQL
@@ -64,7 +66,7 @@ Expressions.create(RUBIK_CUBE).select(1);
 More powerful examples:
 
 ```java
-Table orders   = RUBIK_CUBE.getTable("orders");
+Table orders = RUBIK_CUBE.getTable("orders");
 Table products = RUBIK_CUBE.getTable("products");
 
 Field month = RUBIK_CUBE.getField("month");
